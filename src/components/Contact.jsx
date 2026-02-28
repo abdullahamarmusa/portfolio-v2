@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ScrollReveal from './ScrollReveal';
+import { contactService } from '../lib/contactService';
 
 const BUDGET_OPTIONS = ['< $5k', '$5k-10k', '$10k-20k', '$20k+'];
 
@@ -148,11 +149,12 @@ const Contact = () => {
     setError(null);
 
     try {
-      // Simulate form submission - replace with actual API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // Simulate random error (remove in production)
-      // throw new Error('Network error');
+      await contactService.submitInquiry({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        budget: budget,
+      });
 
       setIsSubmitting(false);
       setSubmitted(true);
@@ -160,7 +162,9 @@ const Contact = () => {
       setBudget(null);
     } catch (err) {
       setIsSubmitting(false);
-      setError('Unable to send message. Please try again or email me directly.');
+      setError(
+        err.message || 'Unable to send message. Please try again or email me directly.'
+      );
     }
   };
 

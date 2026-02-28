@@ -1,14 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import LogoMark from './LogoMark';
 
 const FloatingNav = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [activeLink, setActiveLink] = useState('work');
+  const indicatorRef = useRef(null);
+
+  const navLinks = [
+    { id: 'work', text: 'Work', href: '#work' },
+    { id: 'assets', text: 'Assets', href: 'https://your-store-link.com', external: true },
+    { id: 'pricing', text: 'Pricing', href: '#pricing' }
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const handleClick = (linkId) => {
+    setActiveLink(linkId);
+    setTimeout(() => {
+      const linkElement = document.querySelector(`[data-nav-id="${linkId}"]`);
+      if (indicatorRef.current && linkElement) {
+        const rect = linkElement.getBoundingClientRect();
+        const navRect = indicatorRef.current.getBoundingClientRect();
+        const translateX = rect.left - navRect.left;
+        indicatorRef.current.style.transform = `translateX(${translateX}px)`;
+      }
+    }, 50);
+  };
 
   const navLinkClass =
     'text-sm font-medium text-slate-400 hover:text-white transition-all duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50 rounded-lg px-2';
@@ -25,39 +46,26 @@ const FloatingNav = () => {
         {/* --- CLEAN NAVIGATION ONLY --- */}
 
         {/* Navigation Links */}
-        <div className="flex items-center gap-1 sm:gap-2">
-          <a href="#work" className={navLinkClass}>
-            Work
-          </a>
+        <div className="flex items-center gap-1 sm:gap-2 relative">
+          {/* Sliding Indicator */}
+          <div
+            ref={indicatorRef}
+            className="absolute bottom-[-2px] left-0 h-0.5 rounded-full bg-gradient-to-r from-purple-200 to-white transition-all duration-300"
+          />
 
-          {/* Asset Store Link */}
-          <a
-            href="https://your-store-link.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${navLinkClass} flex items-center gap-1.5 group`}
-          >
-            <svg
-              className="w-3.5 h-3.5 text-purple-400 group-hover:text-purple-300"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.href}
+              data-nav-id={link.id}
+              className={`${navLinkClass} ${activeLink === link.id ? 'text-white scale-105' : ''}`}
+              onClick={() => !link.external && handleClick(link.id)}
+              target={link.external ? '_blank' : ''}
+              rel={link.external ? 'noopener noreferrer' : ''}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-              />
-            </svg>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-white font-semibold group-hover:text-white">
-              Assets
-            </span>
-          </a>
-
-          <a href="#pricing" className={navLinkClass}>
-            Pricing
-          </a>
+              {link.text}
+            </a>
+          ))}
         </div>
 
         <div className="h-4 w-px bg-white/10 mx-2" aria-hidden />
