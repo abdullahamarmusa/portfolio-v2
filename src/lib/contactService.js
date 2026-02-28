@@ -37,6 +37,9 @@ const checkRateLimit = () => {
 export const contactService = {
   // Submit a new contact form inquiry
   async submitInquiry(data) {
+    if (!supabase) {
+      throw new Error('Supabase not configured');
+    }
     try {
       // Check rate limiting
       const rateLimit = checkRateLimit();
@@ -92,6 +95,9 @@ export const contactService = {
 
   // Get all contact inquiries (for admin dashboard)
   async getInquiries() {
+    if (!supabase) {
+      return [];
+    }
     try {
       const { data, error } = await supabase
         .from('contact_inquiries')
@@ -111,6 +117,9 @@ export const contactService = {
 
   // Update inquiry status
   async updateInquiryStatus(id, status) {
+    if (!supabase) {
+      throw new Error('Supabase not configured');
+    }
     try {
       const { data, error } = await supabase
         .from('contact_inquiries')
@@ -131,6 +140,9 @@ export const contactService = {
 
   // Delete an inquiry
   async deleteInquiry(id) {
+    if (!supabase) {
+      throw new Error('Supabase not configured');
+    }
     try {
       const { error } = await supabase.from('contact_inquiries').delete().eq('id', id);
 
@@ -147,6 +159,9 @@ export const contactService = {
 
   // Subscribe to real-time updates
   subscribeToInquiries(callback) {
+    if (!supabase) {
+      return () => {};
+    }
     const subscription = supabase
       .from('contact_inquiries')
       .on('*', payload => {
@@ -159,6 +174,9 @@ export const contactService = {
 
   // Get real-time channel for live updates
   getRealtimeChannel() {
+    if (!supabase) {
+      return null;
+    }
     return supabase.channel('contact_inquiries_changes').on(
       'postgres_changes',
       {

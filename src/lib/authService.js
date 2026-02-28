@@ -25,6 +25,12 @@ const hashPassword = async password => {
  * @returns {Promise<{success: boolean, message: string, adminId?: string}>}
  */
 export const verifyAdminCredentials = async (username, password) => {
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Supabase not configured',
+    };
+  }
   try {
     // Fetch admin user from database
     const { data, error } = await supabase
@@ -71,6 +77,12 @@ export const verifyAdminCredentials = async (username, password) => {
  * @returns {Promise<{success: boolean, message: string, adminId?: string}>}
  */
 export const verifyAdminPin = async (username, pin) => {
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Supabase not configured',
+    };
+  }
   try {
     // Fetch admin user from database
     const { data, error } = await supabase
@@ -124,6 +136,12 @@ export const verifyAdminPin = async (username, pin) => {
  * @returns {Promise<{success: boolean, message: string}>}
  */
 export const verifyAdminPinFromAuth = async (userId, pin) => {
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Supabase not configured',
+    };
+  }
   try {
     // Fetch PIN for the user
     const { data, error } = await supabase
@@ -167,6 +185,12 @@ export const verifyAdminPinFromAuth = async (userId, pin) => {
  * @returns {Promise<{success: boolean, message: string}>}
  */
 export const setAdminPin = async (userId, pin) => {
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Supabase not configured',
+    };
+  }
   try {
     const { error } = await supabase.from('admin_pins').upsert(
       {
@@ -204,6 +228,12 @@ export const setAdminPin = async (userId, pin) => {
  * @returns {Promise<{success: boolean, message: string}>}
  */
 export const createAdminUser = async (username, password) => {
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Supabase not configured',
+    };
+  }
   try {
     const passwordHash = await hashPassword(password);
 
@@ -242,6 +272,12 @@ export const createAdminUser = async (username, password) => {
  * @returns {Promise<{success: boolean, message: string}>}
  */
 export const updateAdminPassword = async (adminId, newPassword) => {
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Supabase not configured',
+    };
+  }
   try {
     const passwordHash = await hashPassword(newPassword);
 
@@ -275,6 +311,9 @@ export const updateAdminPassword = async (adminId, newPassword) => {
  * @returns {Promise<Array>}
  */
 export const listAdminUsers = async () => {
+  if (!supabase) {
+    return [];
+  }
   try {
     const { data, error } = await supabase
       .from('admin_users')
