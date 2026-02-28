@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
+import { Analytics } from "@vercel/analytics/react";
 
 const container = document.getElementById('root');
 if (!container) throw new Error('Failed to find the root element');
@@ -12,9 +13,13 @@ const root = createRoot(container);
 const AppWrapper = process.env.NODE_ENV === 'development' ? (
   <React.StrictMode>
     <App />
+    <Analytics />
   </React.StrictMode>
 ) : (
-  <App />
+  <>
+    <App />
+    <Analytics />
+  </>
 );
 
 root.render(AppWrapper);
