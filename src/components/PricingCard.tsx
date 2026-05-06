@@ -79,7 +79,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
           </div>
 
           {/* Description */}
-          <p className="text-slate-400 text-sm mb-6 leading-relaxed flex-grow">{description}</p>
+          <p className="text-slate-300 text-sm mb-6 leading-relaxed flex-grow">{description}</p>
 
           {/* Features List */}
           <ul className="space-y-3 mb-8">

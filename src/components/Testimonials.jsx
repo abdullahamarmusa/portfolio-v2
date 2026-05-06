@@ -54,7 +54,7 @@ const Testimonials = () => {
           <h2 className="font-display text-4xl md:text-5xl font-black text-white mb-4">
             Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Industry Leaders</span>
           </h2>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             Don't just take my word for it. Here's what founders and executives say about working together.
           </p>
         </ScrollReveal>
@@ -62,7 +62,7 @@ const Testimonials = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((t, idx) => (
             <ScrollReveal key={idx} delay={idx * 100}>
-              <div className="group relative p-8 rounded-3xl bg-gradient-to-br from-slate-900/60 to-slate-900/40 border border-white/10 backdrop-blur-xl hover:border-purple-500/30 transition-all duration-500 h-full flex flex-col hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:scale-[1.02]">
+              <div className="group relative p-8 rounded-3xl bg-gradient-to-br from-slate-900/60 to-slate-900/40 border border-white/20 backdrop-blur-xl hover:border-purple-500/30 transition-all duration-500 h-full flex flex-col hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:scale-[1.02]">
                 {/* Glow effect on hover */}
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-600/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

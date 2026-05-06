@@ -219,9 +219,8 @@ const Contact = () => {
                 next big thing?
               </span>
             </h2>
-            <p className="text-slate-400 text-lg mb-8 leading-relaxed max-w-md">
-              I'm currently accepting new projects for Q2 2026. If you're looking for a partner to
-              build scalable, high-performance software, let's chat.
+            <p className="text-slate-300 text-lg mb-8 leading-relaxed max-w-md font-semibold">
+              <span className="text-emerald-400">3 slots open</span> for premium engagements in Q2 2026. If you're a founder ready to build, let's talk strategy.
             </p>
 
             <div className="space-y-6">
@@ -284,7 +283,7 @@ const Contact = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-400">Name</label>
+                    <label className="text-sm font-medium text-slate-300">Name</label>
                     <input
                       type="text"
                       name="name"
@@ -296,7 +295,7 @@ const Contact = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-400">Email</label>
+                    <label className="text-sm font-medium text-slate-300">Email</label>
                     <input
                       type="email"
                       name="email"
@@ -310,7 +309,7 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-400">Budget Range (USD)</label>
+                  <label className="text-sm font-medium text-slate-300">Budget Range (USD)</label>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {BUDGET_OPTIONS.map(option => (
                       <button
@@ -329,7 +328,7 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-400">Project Details</label>
+                  <label className="text-sm font-medium text-slate-300">Project Details</label>
                   <textarea
                     name="message"
                     value={formData.message}
@@ -369,7 +368,7 @@ const Contact = () => {
                       Sending...
                     </span>
                   ) : (
-                    'Send Inquiry'
+                    'Book Your Strategy Call ($0)'
                   )}
                 </button>
 

@@ -7,6 +7,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import LoadingSkeleton from './components/LoadingSkeleton';
 import AdminDashboard from './components/AdminDashboard';
 import AdminAuth from './components/AdminAuth';
+import ProductDetail from './components/ProductDetail';
 
 // Lazy load components that are not immediately visible
 const ContactModal = React.lazy(() => import('./components/ContactModal'));
@@ -28,6 +29,18 @@ export default function App() {
                   <ContactModal />
                 </ErrorBoundary>
               </Suspense>
+            </ErrorBoundary>
+          }
+        />
+
+        {/* Product Details Route */}
+        <Route
+          path="/products/:id"
+          element={
+            <ErrorBoundary>
+              <FloatingNav />
+              <ProductDetail />
+              <Footer />
             </ErrorBoundary>
           }
         />
