@@ -5,27 +5,59 @@ const ImpactCaseStudy = ({
   subtitle,
   metrics,
   description,
+  niche,
+  timeframe,
+  systemComplexity,
   techStack,
   architecturalDecision,
   image,
+  renderVisual,
   link,
+  badge,
 }) => {
   return (
     <div className="w-full group/case">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* LEFT COLUMN: The "Evidence" */}
         <div className="order-2 lg:order-1">
-          <div className="mb-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-              <span className="text-xs font-bold text-purple-300 tracking-wide uppercase">
-                Case Study
-              </span>
+          <div className="mb-6">
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                <span className="text-xs font-bold text-purple-300 tracking-wide uppercase">
+                  Case Study
+                </span>
+              </div>
+              {badge && (
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                  <span className="text-[10px] font-bold text-emerald-400 tracking-widest uppercase">
+                    {badge}
+                  </span>
+                </div>
+              )}
             </div>
             <h3 className="font-display text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
-              {title}
+              {title} {niche && <span className="text-purple-400">({niche})</span>}
             </h3>
-            <p className="text-lg text-slate-400 leading-relaxed">{description}</p>
+            <p className="text-lg text-slate-400 leading-relaxed mb-6">{description}</p>
+            
+            {/* Micro Details */}
+            {(timeframe || systemComplexity) && (
+              <div className="flex flex-col gap-2 mb-2 text-sm font-medium text-slate-300">
+                {timeframe && (
+                  <div className="flex items-start gap-2">
+                    <span className="text-emerald-400 mt-0.5">→</span>
+                    <span>Delivered in {timeframe}</span>
+                  </div>
+                )}
+                {systemComplexity && (
+                  <div className="flex items-start gap-2">
+                    <span className="text-emerald-400 mt-0.5">→</span>
+                    <span>{systemComplexity}</span>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-3 gap-4 mb-8 border-y border-white/5 py-6">
@@ -97,12 +129,16 @@ const ImpactCaseStudy = ({
                   <div className="w-2.5 h-2.5 rounded-full bg-slate-700" />
                 </div>
               </div>
-              <img
-                src={image}
-                alt={title}
-                loading="lazy"
-                className="absolute top-8 left-0 w-full h-full object-cover opacity-90 group-hover/case:scale-105 transition-transform duration-700 ease-out"
-              />
+              {renderVisual ? (
+                renderVisual
+              ) : (
+                <img
+                  src={image}
+                  alt={title}
+                  loading="lazy"
+                  className="absolute top-8 left-0 w-full h-full object-cover opacity-90 group-hover/case:scale-105 transition-transform duration-700 ease-out"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent z-10 pointer-events-none" />
             </div>
 

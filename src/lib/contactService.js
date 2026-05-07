@@ -47,7 +47,7 @@ export const contactService = {
         throw new Error(rateLimit.message);
       }
 
-      const { name, email, message, budget } = data;
+      const { name, email, message, budget, stage, timeline, bottleneck } = data;
 
       // Validate input
       if (!name?.trim() || !email?.trim() || !message?.trim()) {
@@ -62,13 +62,17 @@ export const contactService = {
         throw new Error('Message must be at least 10 characters long');
       }
 
+      const formattedMessage = stage && timeline && bottleneck
+        ? `[STAGE] ${stage}\n[TIMELINE] ${timeline}\n[BOTTLENECK] ${bottleneck}\n\n[IDEA]\n${message.trim()}`
+        : message.trim();
+
       const { data: result, error } = await supabase
         .from('contact_inquiries')
         .insert([
           {
             name: name.trim(),
             email: email.trim().toLowerCase(),
-            message: message.trim(),
+            message: formattedMessage,
             budget,
             status: 'new',
             created_at: new Date().toISOString(),

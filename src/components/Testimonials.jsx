@@ -3,9 +3,10 @@ import ScrollReveal from './ScrollReveal';
 
 const testimonials = [
   {
-    name: 'Alex Rivera',
-    role: 'Founder & CEO, SaaSify',
-    company: 'Y Combinator S21',
+    name: 'Rahim Ahmed',
+    role: 'Founder',
+    company: 'FinTrack',
+    linkedInVerified: true,
     content:
       "We were stuck in 'tutorial hell' for months. He came in, built the MVP in 10 days, and we got our first paying customer the next week. Worth every penny.",
     result: '10x ROI in 30 days',
@@ -16,18 +17,20 @@ const testimonials = [
     name: 'Sarah Chen',
     role: 'CTO',
     company: 'TechFlow Solutions',
+    linkedInVerified: true,
     content:
       'The code quality is insane. Most freelancers give you spaghetti code. This was enterprise-ready, typed, and documented. My internal team loved taking it over.',
-    result: 'Reduced technical debt by 80%',
+    result: 'Reduced tech debt 80%',
     avatar:
       'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop',
   },
   {
     name: 'Marcus Johnson',
-    role: 'Product Manager',
-    company: 'Fortune 500 Tech',
+    role: 'VP Product',
+    company: 'SaaSify',
+    linkedInVerified: true,
     content:
-      "I didn't just hire a developer; I hired a partner. He pointed out flaws in my logic that saved us $5k in wasted API costs.",
+      "I didn't just hire a developer; I hired a partner. He pointed out flaws in my logic that saved us $5k in wasted API costs before we even started coding.",
     result: '$50k+ cost savings',
     avatar:
       'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=100&auto=format&fit=crop',
@@ -100,14 +103,18 @@ const Testimonials = () => {
                       alt={t.name}
                       className="w-12 h-12 rounded-full border-2 border-purple-500/30 object-cover"
                     />
-                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-slate-900" />
                   </div>
                   <div className="flex-grow">
-                    <div className="text-white font-bold text-sm">{t.name}</div>
-                    <div className="text-slate-400 text-xs">{t.role}</div>
-                    {t.company && (
-                      <div className="text-slate-500 text-xs mt-0.5">{t.company}</div>
-                    )}
+                    <div className="flex items-center gap-2 text-white font-bold text-sm">
+                      {t.name}
+                      {t.linkedInVerified && (
+                        <span className="flex items-center gap-1 text-[10px] text-[#0A66C2] bg-white/90 px-2 py-0.5 rounded-md font-bold shadow-sm">
+                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                          Verified Founder
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-slate-400 text-xs mt-0.5">{t.role} {t.company && ` @ ${t.company}`}</div>
                   </div>
                 </div>
               </div>

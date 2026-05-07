@@ -11,6 +11,7 @@ import ScrollProgress from './ScrollProgress';
 import LogoMark from './LogoMark';
 import FloatingNav from './FloatingNav';
 import PricingCard from './PricingCard.tsx';
+import { StripeDashboardArtifact } from './RealArtifacts';
 import LoadingSkeleton from './LoadingSkeleton';
 import ErrorBoundary from './ErrorBoundary';
 
@@ -102,16 +103,16 @@ const PortfolioHome = React.memo(() => {
                 {/* Main Headline */}
                 <div className="space-y-4">
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] md:leading-[1.15]">
-                    I build systems that automate workflows <br className="hidden xl:block" />
+                    I help founders launch <br className="hidden xl:block" />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 animate-gradient-x drop-shadow-[0_0_30px_rgba(168,85,247,0.3)]">
-                      and help businesses scale faster.
+                      SaaS products fast.
                     </span>
                   </h1>
                 </div>
 
                 {/* Subheadline */}
                 <p className="text-lg md:text-xl text-slate-300 max-w-[650px] leading-relaxed font-light">
-                  Reducing manual work, cutting operational costs, and improving efficiency with scalable web systems.
+                  Without wasting months of your life or burning through your runway.
                 </p>
                 {/* CTA Buttons */}
                 <div className="flex flex-col items-center gap-6 w-full sm:w-auto pt-4">
@@ -143,18 +144,52 @@ const PortfolioHome = React.memo(() => {
               <ScrollMouse />
             </div>
 
-            {/* Tech Ticker Section */}
-            <div className="mt-20 md:mt-24 space-y-6">
-              <div className="text-center">
-                <p className="text-slate-300 text-sm font-bold uppercase tracking-widest mb-2">
-                  Powering Next-Gen Applications
-                </p>
-                <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-slate-600 to-transparent mx-auto"></div>
+            {/* Tech Ticker Section -> Built With Stack Strip */}
+            <div className="mt-20 md:mt-24">
+              <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-slate-500 font-bold text-sm md:text-base tracking-widest uppercase">
+                <span className="hover:text-white transition-colors duration-300">Next.js</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-500/30"></span>
+                <span className="hover:text-white transition-colors duration-300">Node.js</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-500/30"></span>
+                <span className="hover:text-white transition-colors duration-300">PostgreSQL</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-500/30"></span>
+                <span className="hover:text-white transition-colors duration-300">Stripe</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-500/30"></span>
+                <span className="hover:text-white transition-colors duration-300">Docker</span>
               </div>
-              <TechTicker />
             </div>
           </div>
         </header>
+
+        {/* 1.5 WHY CHOOSE ME (Trust Engine) */}
+        <section className="py-20 relative border-t border-white/5 bg-slate-950/50">
+          <div className="max-w-7xl mx-auto px-6">
+            <ScrollReveal>
+              <div className="text-center mb-12">
+                <h2 className="text-2xl md:text-3xl font-bold text-white">
+                  Why founders choose me
+                </h2>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { title: "Ship in days, not months", icon: "⚡", desc: "Speed is a feature. Launch fast and iterate." },
+                { title: "Built for real business use", icon: "💼", desc: "No demo projects. Production-ready architecture." },
+                { title: "Focus on revenue, not just code", icon: "📈", desc: "I build systems designed to convert and scale." },
+                { title: "Direct access — no middlemen", icon: "🤝", desc: "You work directly with me. No project managers." }
+              ].map((item, i) => (
+                <ScrollReveal delay={i * 100} key={item.title}>
+                  <div className="bg-slate-900/40 border border-white/10 rounded-2xl p-6 hover:border-purple-500/30 transition-colors h-full">
+                    <div className="text-2xl mb-4">{item.icon}</div>
+                    <h3 className="text-white font-bold mb-2">{item.title}</h3>
+                    <p className="text-slate-400 text-sm">{item.desc}</p>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* 2. BENTO GRID: Engineering Excellence (Fixed Layout) */}
         <section className="py-24 relative" id="engineering">
@@ -299,19 +334,26 @@ const PortfolioHome = React.memo(() => {
 
             <div className="space-y-24">
               <ScrollReveal delay={0}>
-                <ImpactCaseStudy
-                  title="SaaS Boilerplate PRO"
-                  metrics={[
-                    { value: '$5.2k', label: 'Monthly Revenue' },
-                    { value: '200+', label: 'Happy Founders' },
-                    { value: '10 days', label: 'Launch Speed' },
-                  ]}
-                  description="A high-performance Next.js starter kit designed for speed. Optimized for SEO and conversion, allowing founders to validate ideas in days, not weeks."
-                  techStack={['Next.js', 'Stripe', 'Supabase', 'Tailwind']}
-                  architecturalDecision="We chose Supabase over standard SQL to leverage Row Level Security (RLS) out of the box, reducing backend development time by 60% while maintaining enterprise-grade security."
-                  image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
-                  link="#"
-                />
+                <div className="relative">
+                  <ImpactCaseStudy
+                    badge="Sample Client System"
+                    title="Analytics Dashboard for Subscription SaaS"
+                    niche="FinTech"
+                    timeframe="45 days"
+                    systemComplexity="Integrated Stripe + real-time analytics"
+                    metrics={[
+                      { value: '1,300+', label: 'Active users' },
+                      { value: '60%', label: 'Manual reporting reduced' },
+                      { value: '14 days', label: 'To production' },
+                    ]}
+                    description="Architected a multi-tenant revenue tracking dashboard for a fast-scaling B2B client. Focused entirely on clean data visualization and instant performance to reduce churn."
+                    techStack={['Next.js', 'Stripe', 'Supabase', 'Tremor']}
+                    architecturalDecision="Implemented optimized edge caching and optimistic UI to ensure dashboard metrics load in under 100ms, completely eliminating user bounce rate on the data pages."
+                    image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
+                    renderVisual={<StripeDashboardArtifact />}
+                    link="#"
+                  />
+                </div>
               </ScrollReveal>
 
               <ScrollReveal delay={100}>
@@ -572,6 +614,127 @@ const PortfolioHome = React.memo(() => {
           <ProcessTimeline />
         </section>
 
+        {/* 3.8 PHILOSOPHY & TRANSFORMATION (Authority Layer) */}
+        <section className="py-40 border-t border-white/5 relative bg-slate-950/80 overflow-hidden">
+          {/* Subtle background glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/5 blur-[120px] rounded-full pointer-events-none" />
+          
+          <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <ScrollReveal>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 mb-8">
+                <span className="text-xs font-bold text-purple-300 uppercase tracking-widest">
+                  Philosophy
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight tracking-tight">
+                Most developers write code.<br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                  I build systems that make money.
+                </span><br/>
+                That's the difference.
+              </h2>
+            </ScrollReveal>
+
+            {/* Before vs After Transformation */}
+            <ScrollReveal delay={100}>
+              <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto text-left">
+                {/* Before */}
+                <div className="bg-slate-900/40 border border-red-500/10 rounded-3xl p-8 backdrop-blur-md">
+                  <h3 className="text-xl font-bold text-slate-300 mb-6 flex items-center gap-2">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-red-500/10 text-red-400 text-sm">❌</span>
+                    The Standard Way
+                  </h3>
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3 text-slate-400">
+                      <span className="text-red-400 font-bold mt-0.5">✕</span>
+                      Months of slow development
+                    </li>
+                    <li className="flex items-start gap-3 text-slate-400">
+                      <span className="text-red-400 font-bold mt-0.5">✕</span>
+                      No clear product direction
+                    </li>
+                    <li className="flex items-start gap-3 text-slate-400">
+                      <span className="text-red-400 font-bold mt-0.5">✕</span>
+                      Wasted budget & missed trends
+                    </li>
+                  </ul>
+                </div>
+
+                {/* After */}
+                <div className="bg-slate-900/60 border border-emerald-500/20 rounded-3xl p-8 backdrop-blur-md shadow-[0_0_30px_rgba(16,185,129,0.05)] relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-[50px] pointer-events-none" />
+                  <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400 text-sm">✅</span>
+                    Working With Me
+                  </h3>
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3 text-slate-200 font-medium">
+                      <span className="text-emerald-400 font-bold mt-0.5">✓</span>
+                      Live product in 7 days
+                    </li>
+                    <li className="flex items-start gap-3 text-slate-200 font-medium">
+                      <span className="text-emerald-400 font-bold mt-0.5">✓</span>
+                      Clear, scalable architecture
+                    </li>
+                    <li className="flex items-start gap-3 text-slate-200 font-medium">
+                      <span className="text-emerald-400 font-bold mt-0.5">✓</span>
+                      Ready to onboard users & scale
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* 3.9 OPERATOR INSIGHTS (Authority Multiplier) */}
+        <section className="py-32 border-t border-white/5 relative bg-slate-950/80 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <ScrollReveal className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 mb-8">
+                <span className="text-xs font-bold text-purple-300 uppercase tracking-widest">
+                  Operator Notes
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+                Insights from the <span className="text-purple-400">Trenches</span>
+              </h2>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              <ScrollReveal delay={100}>
+                <a href="#contact" className="block group p-6 md:p-8 rounded-3xl bg-slate-900/40 border border-white/10 backdrop-blur-md hover:bg-slate-900/60 hover:border-purple-500/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] transition-all duration-300">
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="text-slate-500 text-sm font-bold uppercase tracking-widest">Strategy</span>
+                    <span className="w-1 h-1 rounded-full bg-slate-600"></span>
+                    <span className="text-slate-500 text-sm">4 min read</span>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">How I launch production-ready SaaS in 7 days</h3>
+                  <p className="text-slate-400 mb-6 line-clamp-2">The exact architectural constraints and frameworks I use to move 10x faster than traditional agencies while maintaining zero technical debt.</p>
+                  <div className="text-purple-400 font-bold text-sm flex items-center gap-2">
+                    Read insight <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </div>
+                </a>
+              </ScrollReveal>
+
+              <ScrollReveal delay={200}>
+                <a href="#contact" className="block group p-6 md:p-8 rounded-3xl bg-slate-900/40 border border-white/10 backdrop-blur-md hover:bg-slate-900/60 hover:border-pink-500/30 hover:shadow-[0_0_30px_rgba(236,72,153,0.15)] transition-all duration-300">
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="text-slate-500 text-sm font-bold uppercase tracking-widest">Execution</span>
+                    <span className="w-1 h-1 rounded-full bg-slate-600"></span>
+                    <span className="text-slate-500 text-sm">3 min read</span>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-pink-400 transition-colors">3 Fatal Mistakes Non-Technical Founders Make</h3>
+                  <p className="text-slate-400 mb-6 line-clamp-2">Why paying an agency $20k for an MVP usually guarantees failure, and how to validate your idea with extreme capital efficiency.</p>
+                  <div className="text-pink-400 font-bold text-sm flex items-center gap-2">
+                    Read insight <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </div>
+                </a>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
         <Testimonials />
 
         {/* 4. PRICING - Enhanced Section */}
@@ -601,14 +764,10 @@ const PortfolioHome = React.memo(() => {
                 </span>
               </div>
               <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-                Work with{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                  Me
-                </span>
+                Choose the fastest way to build, launch, and scale your product
               </h2>
-              <p className="text-slate-300 text-lg max-w-xl mx-auto">
-                Choose the engagement model that fits your needs. All plans include direct access to
-                me.
+              <p className="text-slate-300 text-lg max-w-2xl mx-auto">
+                Clear pricing. No surprises. Every plan is designed to deliver real business results—not just code.
               </p>
             </ScrollReveal>
 
@@ -616,11 +775,11 @@ const PortfolioHome = React.memo(() => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start">
               {/* Consultation Plan */}
               <PricingCard
-                title="Consultation"
-                subtitle="Expert Guidance"
-                price="$300"
-                pricePeriod="/hour"
-                description="Get expert eyes on your toughest problems. Perfect for code reviews, architecture planning, or career mentorship."
+                title="MVP Strategy Session"
+                subtitle="Get expert direction before you build"
+                price="$99"
+                pricePeriod="/session"
+                description="Avoid costly mistakes. Get a clear roadmap, architecture advice, and actionable next steps."
                 icon={props => (
                   <svg
                     {...props}
@@ -638,24 +797,26 @@ const PortfolioHome = React.memo(() => {
                 )}
                 isPopular={false}
                 delay={0}
-                buttonText="Book Session"
+                buttonText="Book Strategy Call"
                 buttonAction="#contact"
                 features={[
-                  '1-on-1 Video Call (60 min)',
-                  'Architecture Review',
-                  'Code Quality Analysis',
+                  '60-min Strategy Call',
+                  'Architecture Guidance',
+                  'Product Validation',
+                  'Growth & Scaling',
                   'Actionable Roadmap',
-                  'Follow-up Email Summary',
                 ]}
+                bestFor="Early-stage founders or anyone stuck before building"
               />
 
               {/* MVP Sprint - Featured */}
               <PricingCard
                 title="MVP Sprint"
-                subtitle="Ship in 7 Days"
+                subtitle="Launch your product in 7 days"
                 price="$2,500"
-                pricePeriod="/week"
-                description="Rapid 7-day build for validating ideas. I deliver a functional core feature set so you can test the market fast."
+                pricePeriod="one-time"
+                valueAnchor="Save 4–8 weeks of development time"
+                description="I build your core product fast so you can validate your idea and start generating revenue."
                 icon={props => (
                   <svg
                     {...props}
@@ -673,26 +834,28 @@ const PortfolioHome = React.memo(() => {
                 )}
                 isPopular={true}
                 delay={80}
-                buttonText="Start Sprint"
+                buttonText="Launch My MVP in 7 Days"
                 buttonAction="#contact"
+                secondaryCTAText="or book a free strategy call"
+                secondaryCTAAction="#contact"
                 features={[
-                  'Core Functionality Build',
-                  'Database & Auth Setup',
-                  'Production Deployment',
-                  'GitHub Repo + Walkthrough',
-                  '2 Weeks Bug-Fix Support',
-                  'Basic SEO Optimization',
-                  'Mobile Responsive Design',
+                  'Full-Stack Build',
+                  'Auth & Database',
+                  'Scalable Codebase',
+                  'Live Deployment',
+                  'Mobile & SEO Ready',
+                  'Code Walkthrough',
                 ]}
+                bestFor="Founders, startups, and SaaS ideas that need to launch FAST"
               />
 
               {/* Retainer Plan */}
               <PricingCard
-                title="Retainer"
-                subtitle="Ongoing Partnership"
-                price="$8,000"
+                title="Growth Partner"
+                subtitle="Ongoing development & scaling support"
+                price="$3k–$6k"
                 pricePeriod="/month"
-                description="Dedicated development partner for your startup. 20 hours/week of focused engineering on your roadmap."
+                description="Build faster, fix bottlenecks, and scale without hiring a full team"
                 icon={props => (
                   <svg
                     {...props}
@@ -710,112 +873,117 @@ const PortfolioHome = React.memo(() => {
                 )}
                 isPopular={false}
                 delay={160}
-                buttonText="Contact Me"
+                buttonText="Apply for Partnership"
                 buttonAction="#contact"
                 features={[
-                  '20 hrs/week Dedicated',
-                  'Priority Slack Access',
-                  'Weekly Strategy Calls',
-                  'Feature Planning & Estimation',
-                  'Code Reviews & Best Practices',
-                  'Technical Debt Management',
-                  'Ongoing Support',
+                  '10–20 hrs/week Dedicated Dev',
+                  'Features & Optimization',
+                  'Architecture & Code Reviews',
+                  'Performance Scaling',
+                  'Weekly Syncs & Support',
                 ]}
+                bestFor="Startups ready to grow after MVP"
               />
             </div>
 
-            {/* Trust Indicators */}
-            <ScrollReveal delay={240}>
-              <div className="mt-16">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                  <div className="flex items-center justify-center gap-3 px-6 py-4 rounded-2xl bg-slate-900/30 border border-white/5">
-                    <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                      <svg
-                        className="w-5 h-5 text-emerald-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
+            {/* Value Comparison Bar */}
+            <ScrollReveal delay={200}>
+              <div className="mt-16 max-w-3xl mx-auto">
+                <div className="flex flex-col gap-3 p-6 md:p-8 rounded-3xl bg-slate-900/40 border border-white/5 backdrop-blur-md">
+                  
+                  {/* Row 1 */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-2xl bg-slate-800/30 border border-white/5">
+                    <div className="flex items-center gap-3">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-red-500/10 text-red-400 text-sm shrink-0">❌</span>
+                      <span className="text-slate-300 font-medium">Hiring a developer</span>
                     </div>
-                    <div>
-                      <div className="text-white font-bold text-sm">48-Hour Guarantee</div>
-                      <div className="text-slate-500 text-xs">Money-back promise</div>
+                    <div className="flex items-center gap-3 sm:justify-end ml-11 sm:ml-0">
+                      <span className="text-slate-400 font-bold line-through decoration-red-500/30">$5,000+</span>
+                      <span className="text-slate-500 text-xs font-medium bg-slate-800/80 px-2.5 py-1 rounded-md whitespace-nowrap">(slow, risky)</span>
                     </div>
                   </div>
-                  <div className="flex items-center justify-center gap-3 px-6 py-4 rounded-2xl bg-slate-900/30 border border-white/5">
-                    <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center">
-                      <svg
-                        className="w-5 h-5 text-purple-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="text-white font-bold text-sm">NDA Protected</div>
-                      <div className="text-slate-500 text-xs">Your ideas stay yours</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-center gap-3 px-6 py-4 rounded-2xl bg-slate-900/30 border border-white/5">
-                    <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
-                      <svg
-                        className="w-5 h-5 text-blue-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M13 10V3L4 14h7v7l9-11h-7z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="text-white font-bold text-sm">Fast Turnaround</div>
-                      <div className="text-slate-500 text-xs">Average 2-day delivery</div>
-                    </div>
-                  </div>
-                </div>
 
-                {/* Trust Badge */}
-                <div className="text-center">
-                  <div className="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-slate-900/50 border border-white/5 backdrop-blur-md">
-                    <svg
-                      className="w-5 h-5 text-emerald-400"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                      />
-                    </svg>
-                    <span className="text-slate-300 font-medium">
-                      100% money-back guarantee if not satisfied within the first 48 hours
-                    </span>
+                  {/* Row 2 */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-2xl bg-slate-800/30 border border-white/5">
+                    <div className="flex items-center gap-3">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-red-500/10 text-red-400 text-sm shrink-0">❌</span>
+                      <span className="text-slate-300 font-medium">Hiring an agency</span>
+                    </div>
+                    <div className="flex items-center gap-3 sm:justify-end ml-11 sm:ml-0">
+                      <span className="text-slate-400 font-bold line-through decoration-red-500/30">$10,000+</span>
+                      <span className="text-slate-500 text-xs font-medium bg-slate-800/80 px-2.5 py-1 rounded-md whitespace-nowrap">(overkill for MVP)</span>
+                    </div>
+                  </div>
+
+                  {/* Row 3 (The Offer) */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 relative overflow-hidden group mt-2 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/10 to-emerald-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                    <div className="flex items-center gap-3 relative z-10">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 text-sm shrink-0">✅</span>
+                      <span className="text-emerald-400 font-bold text-lg">Your MVP Sprint</span>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-3 sm:justify-end ml-11 sm:ml-0 relative z-10">
+                      <span className="text-emerald-300 font-black text-xl">$2,500</span>
+                      <span className="text-emerald-500 text-xs font-bold bg-emerald-500/10 px-2.5 py-1 rounded-md">(fast, focused, production-ready)</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Risk Reversal / Guarantees */}
+            <ScrollReveal delay={240}>
+              <div className="mt-12 flex justify-center">
+                <div className="bg-slate-900/60 border border-emerald-500/20 backdrop-blur-md rounded-3xl p-8 max-w-3xl w-full shadow-[0_0_30px_rgba(16,185,129,0.05)] relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-[50px] pointer-events-none" />
+                  <h4 className="text-white font-bold text-xl mb-6 flex items-center justify-center md:justify-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                      <svg className="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </div>
+                    The 3% Standard Guarantee
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="flex items-start gap-3 text-slate-300 font-medium">
+                      <span className="text-emerald-400 mt-0.5">✔</span>
+                      <span>100% satisfaction guarantee</span>
+                    </div>
+                    <div className="flex items-start gap-3 text-slate-300 font-medium">
+                      <span className="text-emerald-400 mt-0.5">✔</span>
+                      <span>If you're not happy, I fix it — no extra cost</span>
+                    </div>
+                    <div className="flex items-start gap-3 text-slate-300 font-medium">
+                      <span className="text-emerald-400 mt-0.5">✔</span>
+                      <span>Limited to 2 projects/month</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </ScrollReveal>
+          </div>
+        </section>
+
+        {/* FREE AUDIT (Lead Magnet) */}
+        <section className="py-24 border-t border-white/5 bg-gradient-to-b from-slate-950 to-slate-900 relative overflow-hidden">
+          <div className="absolute inset-0 bg-purple-600/5 blur-[100px] rounded-full pointer-events-none" />
+          <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
+              <span className="text-sm font-bold text-purple-300 uppercase tracking-widest">
+                Free 24-Hour Audit
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Not sure if your idea is viable?
+            </h2>
+            <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Send me your SaaS idea or current bottleneck. I'll record a free 5-minute Loom video breaking down the technical architecture and a step-by-step execution plan.
+            </p>
+            <a href="#contact" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-slate-950 font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+              Get Your Free Audit →
+            </a>
+            <p className="text-sm text-slate-500 mt-6 font-medium">100% free. No sales pitch. Just pure technical value.</p>
           </div>
         </section>
 

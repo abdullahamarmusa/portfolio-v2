@@ -18,10 +18,16 @@ const Footer = () => {
             <div className="text-2xl font-bold text-white mb-4 tracking-tight">
               Abdullah <span className="text-purple-400">Amar Musa</span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+            <p className="text-slate-400 text-sm leading-relaxed mb-4">
               Building high-performance digital experiences for ambitious founders. Turning code
               into capital since 2024.
             </p>
+            <div className="text-sm font-semibold text-emerald-400 mb-6 flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              Helping founders build, launch, and scale faster.
+            </div>
             {/* Social Row */}
             <div className="flex gap-4">
               <a
@@ -58,23 +64,28 @@ const Footer = () => {
             <h4 className="font-bold text-white mb-6">Navigation</h4>
             <ul className="space-y-4 text-sm text-slate-400">
               <li>
-                <a href="#" className="hover:text-purple-400 transition">
-                  Home
+                <a href="#work" className="hover:text-purple-400 transition">
+                  Case Studies
                 </a>
               </li>
               <li>
-                <a href="#work" className="hover:text-purple-400 transition">
-                  Selected Work
+                <a href="#systems" className="hover:text-purple-400 transition">
+                  Systems
                 </a>
               </li>
               <li>
                 <a href="#process" className="hover:text-purple-400 transition">
-                  My Process
+                  Process
                 </a>
               </li>
               <li>
                 <a href="#pricing" className="hover:text-purple-400 transition">
                   Pricing
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="hover:text-purple-400 transition">
+                  Contact
                 </a>
               </li>
             </ul>
@@ -84,16 +95,22 @@ const Footer = () => {
           <div>
             <h4 className="font-bold text-white mb-6">Products</h4>
             <ul className="space-y-4 text-sm text-slate-400">
-              {/* Add your real link here */}
               <li>
-                <a
-                  href="https://your-store.com"
-                  className="hover:text-purple-400 transition flex items-center gap-2"
-                >
+                <a href="https://your-store.com" className="hover:text-purple-400 transition flex items-center gap-2">
                   SaaS Boilerplate
                   <span className="px-2 py-0.5 rounded text-[10px] bg-purple-500/20 text-purple-300 font-bold border border-purple-500/30">
-                    HOT
+                    🔥 Most Popular
                   </span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-purple-400 transition">
+                  Automation Systems
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-purple-400 transition">
+                  Internal Tools
                 </a>
               </li>
               <li>
@@ -103,12 +120,13 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="hover:text-purple-400 transition">
-                  React Components
+                  Free Resources
                 </a>
               </li>
-              <li>
-                <a href="#" className="hover:text-purple-400 transition">
-                  Free Resources
+              <li className="pt-2 mt-2 border-t border-white/5">
+                <a href="#" className="text-purple-400 hover:text-purple-300 transition font-semibold flex items-center gap-1 group">
+                  View All Products
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </a>
               </li>
             </ul>
@@ -128,14 +146,27 @@ const Footer = () => {
                   Terms of Service
                 </a>
               </li>
+              <li>
+                <a href="#" className="hover:text-purple-400 transition">
+                  Refund Policy
+                </a>
+              </li>
             </ul>
+
+            {/* CTA */}
+            <div className="bg-slate-900/50 p-5 rounded-2xl border border-white/5 mt-8">
+              <h4 className="font-bold text-white mb-3 text-sm">🚀 Ready to build your product?</h4>
+              <a href="#contact" className="flex items-center justify-center w-full py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white text-xs font-bold rounded-xl text-center transition">
+                Book Strategy Call
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-slate-600 text-xs">
-            © {new Date().getFullYear()} Abdullah Amar Musa. All rights reserved.
+          <div className="text-slate-500 text-xs font-medium">
+            © {new Date().getFullYear()} Abdullah Amar Musa — Built for founders who want to move fast.
           </div>
           <div className="text-slate-600 text-xs flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500"></span>

@@ -2,10 +2,38 @@ import React, { useState } from 'react';
 import ScrollReveal from './ScrollReveal';
 import { contactService } from '../lib/contactService';
 
-const BUDGET_OPTIONS = ['< $5k', '$5k-10k', '$10k-20k', '$20k+'];
+const BUDGET_OPTIONS = ['< $1k', '$1k – $3k', '$3k – $6k', '$6k+'];
 
 // Glassmorphism Success Message Component
-const SuccessMessage = ({ onReset }) => (
+const SuccessMessage = ({ onReset, submittedBudget }) => {
+  let header = "Message Sent!";
+  let text = (
+    <>
+      Thanks for reaching out. I'll review your project details and get back to you within{' '}
+      <span className="text-emerald-400 font-medium">24 hours</span>.
+    </>
+  );
+  let cta = "Send Another Message";
+  let action = onReset;
+
+  if (submittedBudget === '< $1k') {
+    header = "Let's Get Strategic";
+    text = "Based on your budget, I highly recommend booking an MVP Strategy Session. It's the most high-leverage way to get unblocked right now.";
+    cta = "Book Strategy Session ($99)";
+    action = () => window.location.href = "#pricing";
+  } else if (submittedBudget === '$1k – $3k' || submittedBudget === '$3k – $6k') {
+    header = "Perfect Match for an MVP Sprint";
+    text = "Your budget aligns perfectly with my 7-Day MVP Sprint ($2,500). I'll review your details and reach out within 24 hours to schedule our kickoff call.";
+    cta = "View MVP Details";
+    action = () => window.location.href = "#pricing";
+  } else if (submittedBudget === '$6k+') {
+    header = "Ready for Growth";
+    text = "This sounds like a great fit for my Growth Partner retainer. I'll review your project scope and contact you within 24 hours to discuss scaling strategies.";
+    cta = "View Growth Partner Details";
+    action = () => window.location.href = "#pricing";
+  }
+
+  return (
   <div className="flex items-center justify-center min-h-[60vh]">
     <div className="relative group">
       {/* Animated glow effects */}
@@ -55,36 +83,39 @@ const SuccessMessage = ({ onReset }) => (
         <div className="absolute bottom-8 right-10 w-1.5 h-1.5 rounded-full bg-cyan-500/50 animate-pulse delay-150" />
         <div className="absolute top-10 right-16 w-1 h-1 rounded-full bg-purple-500/50 animate-pulse delay-300" />
 
-        <h3 className="font-display text-2xl font-bold text-white mb-3">Message Sent!</h3>
+        <h3 className="font-display text-2xl font-bold text-white mb-3">{header}</h3>
         <p className="text-slate-400 mb-6 leading-relaxed">
-          Thanks for reaching out. I'll review your project details and get back to you within{' '}
-          <span className="text-emerald-400 font-medium">24 hours</span>.
+          {text}
         </p>
 
-        {/* Action button */}
-        <button
-          onClick={onReset}
-          className="group px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 text-white font-medium hover:from-emerald-500/30 hover:to-cyan-500/30 transition-all duration-300 flex items-center justify-center gap-2 mx-auto"
-        >
-          <span>Send Another Message</span>
-          <svg
-            className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+        {/* Action buttons */}
+        <div className="flex flex-col gap-4">
+          <button
+            onClick={action}
+            className="group px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 text-white font-medium hover:from-emerald-500/30 hover:to-cyan-500/30 transition-all duration-300 flex items-center justify-center gap-2 mx-auto"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-            />
-          </svg>
-        </button>
+            <span>{cta}</span>
+            <svg
+              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+
+          {action !== onReset && (
+            <button onClick={onReset} className="text-xs text-slate-500 hover:text-white transition">
+              Or send another message
+            </button>
+          )}
+        </div>
       </div>
     </div>
   </div>
-);
+  );
+};
 
 // Glassmorphism Error Alert Component
 const ErrorAlert = ({ message, onDismiss }) => (
@@ -133,8 +164,16 @@ const ErrorAlert = ({ message, onDismiss }) => (
 
 const Contact = () => {
   const [budget, setBudget] = useState(null);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    email: '', 
+    stage: 'Idea / Pre-revenue',
+    bottleneck: 'Speed to market',
+    timeline: 'ASAP',
+    message: '' 
+  });
   const [submitted, setSubmitted] = useState(false);
+  const [submittedBudget, setSubmittedBudget] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
@@ -150,15 +189,21 @@ const Contact = () => {
 
     try {
       await contactService.submitInquiry({
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
+        ...formData,
         budget: budget,
       });
 
+      setSubmittedBudget(budget);
       setIsSubmitting(false);
       setSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ 
+        name: '', 
+        email: '', 
+        stage: 'Idea / Pre-revenue',
+        bottleneck: 'Speed to market',
+        timeline: 'ASAP',
+        message: '' 
+      });
       setBudget(null);
     } catch (err) {
       setIsSubmitting(false);
@@ -178,7 +223,7 @@ const Contact = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-600/10 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-cyan-600/5 blur-[100px] rounded-full pointer-events-none" />
 
-        <SuccessMessage onReset={() => setSubmitted(false)} />
+        <SuccessMessage onReset={() => setSubmitted(false)} submittedBudget={submittedBudget} />
       </section>
     );
   }
@@ -214,13 +259,13 @@ const Contact = () => {
               </span>
             </div>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-              Ready to start your <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                next big thing?
+              Not sure if your idea <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
+                will work?
               </span>
             </h2>
             <p className="text-slate-300 text-lg mb-8 leading-relaxed max-w-md font-semibold">
-              <span className="text-emerald-400">3 slots open</span> for premium engagements in Q2 2026. If you're a founder ready to build, let's talk strategy.
+              I'll validate it for you in 24 hours — <span className="text-emerald-400">free</span>. Let's see if you're a fit for one of my 3 open slots in Q2 2026.
             </p>
 
             <div className="space-y-6">
@@ -327,15 +372,77 @@ const Contact = () => {
                   </div>
                 </div>
 
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-300">Current Stage</label>
+                    <div className="relative">
+                      <select
+                        name="stage"
+                        value={formData.stage}
+                        onChange={handleChange}
+                        className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 text-white appearance-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition cursor-pointer"
+                        required
+                      >
+                        <option value="Idea / Pre-revenue">Idea / Pre-revenue</option>
+                        <option value="Building MVP">Building MVP</option>
+                        <option value="Scaling / PMF">Scaling / PMF</option>
+                      </select>
+                      <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-500">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-300">Timeline</label>
+                    <div className="relative">
+                      <select
+                        name="timeline"
+                        value={formData.timeline}
+                        onChange={handleChange}
+                        className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 text-white appearance-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition cursor-pointer"
+                        required
+                      >
+                        <option value="ASAP">ASAP (Next 7-14 Days)</option>
+                        <option value="1-2 months">1-2 Months</option>
+                        <option value="Just exploring">Just exploring</option>
+                      </select>
+                      <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-500">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-300">Project Details</label>
+                  <label className="text-sm font-medium text-slate-300">Biggest Bottleneck</label>
+                  <div className="relative">
+                    <select
+                      name="bottleneck"
+                      value={formData.bottleneck}
+                      onChange={handleChange}
+                      className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 text-white appearance-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition cursor-pointer"
+                      required
+                    >
+                      <option value="Speed to market">Speed to market</option>
+                      <option value="Need technical architecture">Need technical architecture / logic</option>
+                      <option value="Fixing broken code / tech debt">Fixing broken code / tech debt</option>
+                    </select>
+                    <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-500">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-300">What are you building? (The Idea)</label>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows={4}
+                    rows={3}
                     className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-600 focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition resize-none"
-                    placeholder="Tell me about your idea..."
+                    placeholder="Briefly describe your product and goals..."
                     required
                   />
                 </div>
@@ -343,9 +450,9 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`btn-premium w-full py-4 rounded-xl text-white font-bold text-lg transition shadow-lg shadow-purple-500/25 ${isSubmitting
+                  className={`btn-premium w-full py-4 rounded-xl text-white font-black text-xl transition-all shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:shadow-[0_0_50px_rgba(168,85,247,0.8)] border border-white/20 ${isSubmitting
                     ? 'bg-slate-700 cursor-not-allowed opacity-70'
-                    : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-95'
+                    : 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 bg-[length:200%_auto] hover:bg-right hover:scale-[1.02]'
                     }`}
                 >
                   {isSubmitting ? (
@@ -365,10 +472,10 @@ const Contact = () => {
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                         />
                       </svg>
-                      Sending...
+                      Validating...
                     </span>
                   ) : (
-                    'Book Your Strategy Call ($0)'
+                    'Get Free 24h Validation'
                   )}
                 </button>
 

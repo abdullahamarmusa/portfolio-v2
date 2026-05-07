@@ -20,6 +20,11 @@ export interface PricingCardProps {
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
   gradient?: string;
   delay?: number;
+  bestFor?: string;
+  valueAnchor?: string;
+  secondaryCTAText?: string;
+  secondaryCTAAction?: string;
+  microProof?: string[];
 }
 
 // FAQ types

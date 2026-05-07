@@ -4,8 +4,8 @@ import ScrollReveal from './ScrollReveal';
 const steps = [
   {
     day: 'Day 1',
-    title: 'Discovery & Audit',
-    desc: 'We align on the core problem. I strip away non-essential features to focus on the MVP value proposition.',
+    title: 'Strategy + architecture',
+    desc: 'System design, database schema, and exact roadmap alignment. No guesswork.',
     icon: (
       <svg
         className="w-5 h-5"
@@ -24,9 +24,9 @@ const steps = [
     accent: 'purple',
   },
   {
-    day: 'Day 2–3',
-    title: 'Database & Auth',
-    desc: 'Setup Supabase/Firebase, authentications, and schema design. The foundation is laid for scalability.',
+    day: 'Day 2–5',
+    title: 'Core build',
+    desc: 'Sprint coding. Frontend interfaces, auth, and backend APIs. Daily staging links.',
     icon: (
       <svg
         className="w-5 h-5"
@@ -45,9 +45,9 @@ const steps = [
     accent: 'blue',
   },
   {
-    day: 'Day 4–6',
-    title: 'Core Development',
-    desc: 'Sprint coding. I build the frontend interfaces and connect them to the backend APIs. Real-time updates and logic.',
+    day: 'Day 6',
+    title: 'Deployment',
+    desc: 'Production server push, QA testing, and performance optimization.',
     icon: (
       <svg
         className="w-5 h-5"
@@ -67,8 +67,8 @@ const steps = [
   },
   {
     day: 'Day 7',
-    title: 'Launch & Handover',
-    desc: 'Deployment to Vercel/AWS. Domain connection. You receive the GitHub repo and a recorded walkthrough.',
+    title: 'Launch + handover',
+    desc: 'Domain connection, live launch, code ownership transfer, and documentation walkthrough.',
     icon: (
       <svg
         className="w-5 h-5"
