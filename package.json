@@ -1,5 +1,5 @@
 {
-  "name": "million-dollar-engineer-portfolio",
+  "name": "full-stack-product-engineer-portfolio",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -17,6 +17,7 @@
     "@vercel/analytics": "^1.6.1",
     "didyoumean": "^1.2.2",
     "lucide-react": "^1.14.0",
+    "motion": "^13.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.13.1"

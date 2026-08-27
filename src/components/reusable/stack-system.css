@@ -1,0 +1,83 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   STACK & TOOLS — Compact technical signature strip
+   Scoped styles for the slim StackSection. Inherits the --rs-* design tokens
+   from sections.css (slate paper, purple/pink signal, JetBrains Mono, Inter).
+
+   Visual language: deep navy paper, thin 1px rules, subtle purple/pink accent.
+   No interactive maps, selectors, floating cards or dependency graphs.
+   Height target: ≈120–180px. Transitions naturally into the Process section.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.rs-root .stack-signature {
+  position: relative;
+  border-top: 1px solid var(--rs-line);
+  border-bottom: 1px solid var(--rs-line);
+  background: rgba(242, 240, 255, 0.012);
+}
+
+.rs-root .stack-signature__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px 0;
+  min-height: 120px;
+  text-align: center;
+}
+
+.rs-root .stack-signature__head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.rs-root .stack-signature__index {
+  color: var(--rs-signal);
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.rs-root .stack-signature__head h2 {
+  margin: 0;
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--rs-ink);
+}
+
+/* Technology radios — the shared TechRadioGroup pills, centered */
+.rs-root .stack-signature__tech {
+  margin: 0;
+}
+
+.rs-root .stack-signature__tech .trg {
+  justify-content: center;
+  max-width: 760px;
+}
+
+.rs-root .stack-signature__note {
+  margin: 0;
+  color: var(--rs-muted);
+  font-size: clamp(11px, 1.05vw, 13px);
+  line-height: 1.5;
+}
+
+.rs-root .stack-signature__accent {
+  color: var(--rs-signal-soft);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .rs-root .stack-signature__index {
+    display: none;
+  }
+
+  .rs-root .stack-signature__inner {
+    padding: 24px 16px;
+    gap: 9px;
+  }
+}

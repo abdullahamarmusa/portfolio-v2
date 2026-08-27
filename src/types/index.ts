@@ -25,6 +25,11 @@ export interface PricingCardProps {
   secondaryCTAText?: string;
   secondaryCTAAction?: string;
   microProof?: string[];
+  priceLabel?: string;
+  scope?: string;
+  delivery?: string;
+  ctaHint?: string;
+  accent?: 'violet' | 'featured' | 'blue';
 }
 
 // FAQ types

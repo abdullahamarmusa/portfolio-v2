@@ -2,9 +2,16 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      colors: {
+        slate: {
+          800: '#10172A',
+          900: '#0B1020',
+          950: '#060914',
+        }
+      },
       fontFamily: {
-        display: ["Syne", "system-ui", "sans-serif"],
-        body: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+        display: ["Inter", "system-ui", "sans-serif"],
+        body: ["Inter", "system-ui", "sans-serif"],
       },
       keyframes: {
         float: {

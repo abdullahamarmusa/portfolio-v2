@@ -3,84 +3,64 @@ import ScrollReveal from './ScrollReveal';
 
 const steps = [
   {
-    day: 'Day 1',
-    title: 'Strategy + architecture',
-    desc: 'System design, database schema, and exact roadmap alignment. No guesswork.',
+    day: '01',
+    title: 'Define',
+    desc: 'Clarify the product, users, scope and priorities. We align on what needs to ship and what success looks like.',
+    outcome: 'A clear product direction.',
     icon: (
-      <svg
-        className="w-5 h-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-        />
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
     ),
     accent: 'purple',
   },
   {
-    day: 'Day 2–5',
-    title: 'Core build',
-    desc: 'Sprint coding. Frontend interfaces, auth, and backend APIs. Daily staging links.',
+    day: '02',
+    title: 'Architect',
+    desc: 'Design the technical foundation — system structure, database schema, user flow and UI direction.',
+    outcome: 'A scalable technical plan.',
     icon: (
-      <svg
-        className="w-5 h-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
-        />
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
       </svg>
     ),
     accent: 'blue',
   },
   {
-    day: 'Day 6',
-    title: 'Deployment',
-    desc: 'Production server push, QA testing, and performance optimization.',
+    day: '03',
+    title: 'Build',
+    desc: 'Design and implement the product experience — interfaces, auth and integrations with regular staging links.',
+    outcome: 'A polished working product.',
     icon: (
-      <svg
-        className="w-5 h-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-        />
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
       </svg>
     ),
     accent: 'emerald',
   },
   {
-    day: 'Day 7',
-    title: 'Launch + handover',
-    desc: 'Domain connection, live launch, code ownership transfer, and documentation walkthrough.',
+    day: '04',
+    title: 'Refine',
+    desc: 'Test, optimize and fix the rough edges — responsive behavior, performance, accessibility and QA.',
+    outcome: 'A production-ready application.',
     icon: (
-      <svg
-        className="w-5 h-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M5 3l14 9-14 9V3z" />
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
       </svg>
     ),
     accent: 'pink',
+  },
+  {
+    day: '05',
+    title: 'Launch',
+    desc: 'Deploy, monitor and prepare for real users — domain connection, analytics wiring and documentation handoff.',
+    outcome: 'A product ready to ship.',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 3l14 9-14 9V3z" />
+      </svg>
+    ),
+    accent: 'yellow',
   },
 ];
 
@@ -116,6 +96,14 @@ const accentMap = {
     cardBorder: 'border-pink-500/40 shadow-[0_0_30px_rgba(236,72,153,0.08)]',
     iconBg: 'bg-pink-500/10 text-pink-400',
     glow: 'bg-pink-500/20',
+  },
+  yellow: {
+    dot: 'border-yellow-500 shadow-[0_0_20px_rgba(234,179,8,0.6)]',
+    dotInner: 'bg-yellow-400',
+    badge: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
+    cardBorder: 'border-yellow-500/40 shadow-[0_0_30px_rgba(234,179,8,0.08)]',
+    iconBg: 'bg-yellow-500/10 text-yellow-400',
+    glow: 'bg-yellow-500/20',
   },
 };
 
@@ -170,12 +158,11 @@ const ProcessTimeline = () => {
   }, [activeStep]);
 
   return (
-    <section className="py-32 bg-slate-950 relative overflow-hidden border-t border-white/5">
-      {/* Background ambient glow */}
+    <section id="process" className="py-16 bg-slate-950 relative overflow-hidden border-t border-white/5">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-600/5 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-6 relative z-10">
-        <ScrollReveal className="text-center mb-20">
+        <ScrollReveal className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
             <svg
               className="w-4 h-4 text-purple-400"
@@ -195,21 +182,18 @@ const ProcessTimeline = () => {
             </span>
           </div>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
-            The{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-              7-Day Protocol
-            </span>
+            A <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+              repeatable launch
+            </span> process
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            My proven system for going from "Idea" to "Deployed" in one week.
+            Five clear stages from first conversation to deployed product — each one ends with something concrete in your hands.
           </p>
         </ScrollReveal>
 
         <div className="relative" ref={timelineRef}>
-          {/* Background line */}
           <div className="hidden md:block absolute left-8 top-0 bottom-0 w-px bg-slate-800/80" />
 
-          {/* Animated progress line */}
           <div
             className="hidden md:block absolute left-8 top-0 w-px bg-gradient-to-b from-purple-500 via-blue-500 to-emerald-500 transition-all duration-700 ease-out"
             style={{ height: `${progressHeight}px` }}
@@ -226,7 +210,6 @@ const ProcessTimeline = () => {
                   ref={el => (stepRefs.current[idx] = el)}
                   className="relative flex items-start gap-6 md:gap-10 group"
                 >
-                  {/* Timeline dot */}
                   <div className="relative z-10 flex-shrink-0">
                     <div
                       className={`w-16 h-16 rounded-2xl border-2 flex items-center justify-center transition-all duration-500 ${styles.dot} ${
@@ -240,7 +223,6 @@ const ProcessTimeline = () => {
                       </div>
                     </div>
 
-                    {/* Glow behind dot */}
                     <div
                       className={`absolute inset-0 rounded-2xl blur-xl transition-opacity duration-700 pointer-events-none ${styles.glow} ${
                         isActive ? 'opacity-60' : 'opacity-0'
@@ -248,7 +230,6 @@ const ProcessTimeline = () => {
                     />
                   </div>
 
-                  {/* Content card */}
                   <div
                     className={`flex-1 p-6 md:p-8 rounded-2xl border bg-slate-900/30 backdrop-blur-sm transition-all duration-500 group-hover:bg-slate-900/50 ${styles.cardBorder} ${
                       isActive ? 'translate-x-0 opacity-100' : 'translate-x-2 opacity-60'
@@ -258,7 +239,7 @@ const ProcessTimeline = () => {
                       <span
                         className={`inline-block px-3 py-1 rounded-full text-xs font-bold border transition-all duration-500 ${styles.badge}`}
                       >
-                        {step.day}
+                        Step {step.day}
                       </span>
                       <div
                         className={`h-px flex-1 transition-all duration-500 ${isActive ? 'bg-white/10' : 'bg-white/5'}`}
@@ -285,7 +266,22 @@ const ProcessTimeline = () => {
                       {step.desc}
                     </p>
 
-                    {/* Hover arrow indicator */}
+                    {/* Outcome — what the client leaves this step with */}
+                    <div
+                      className={`mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-semibold transition-all duration-500 ${
+                        isActive
+                          ? 'border-emerald-500/25 bg-emerald-500/10 text-emerald-300'
+                          : 'border-white/5 bg-slate-800/30 text-slate-600'
+                      }`}
+                    >
+                      <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>
+                        You leave with: <span className="font-bold">{step.outcome}</span>
+                      </span>
+                    </div>
+
                     <div className="mt-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-0 group-hover:translate-x-1">
                       <div className={`w-6 h-px ${isActive ? 'bg-white/30' : 'bg-white/10'}`} />
                       <svg
@@ -305,9 +301,8 @@ const ProcessTimeline = () => {
           </div>
         </div>
 
-        {/* Bottom CTA */}
         <ScrollReveal delay={200}>
-          <div className="mt-20 text-center">
+          <div className="mt-14 text-center">
             <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900/50 border border-white/10 backdrop-blur-sm">
               <div className="flex -space-x-2">
                 <div className="w-6 h-6 rounded-full bg-purple-500/30 border border-purple-500/50" />
@@ -315,7 +310,7 @@ const ProcessTimeline = () => {
                 <div className="w-6 h-6 rounded-full bg-emerald-500/30 border border-emerald-500/50" />
               </div>
               <span className="text-sm text-slate-400">
-                From idea to production in <span className="text-white font-semibold">7 days</span>
+                From idea to production in as fast as <span className="text-white font-semibold">7 days</span>
               </span>
             </div>
           </div>

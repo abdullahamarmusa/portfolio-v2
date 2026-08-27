@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Abdullah Amar Musa | Full-Stack Architect</title>
+    <title>Abdullah Amar Musa — Full-Stack Product Engineer</title>
     <meta name="description"
-        content="I build million-dollar digital experiences. Expert in MERN Stack, Next.js, and high-performance SaaS development. Available for freelance projects and consulting." />
-    <meta name="keywords" content="full-stack developer, SaaS architect, MERN stack, Next.js, React, Node.js, freelance developer, web development, software engineer" />
+        content="I build polished SaaS products that are ready to ship. Full-stack product engineering — product architecture, UX and production-ready Next.js applications for founders. Available for selected projects." />
+    <meta name="keywords" content="full-stack product engineer, SaaS developer, Next.js developer, Supabase, React, Node.js, product engineering, UX engineering, freelance developer, software engineer" />
     <meta name="author" content="Abdullah Amar Musa" />
     <meta name="theme-color" content="#020617" />
     <meta name="robots" content="index, follow" />
@@ -15,21 +15,24 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Abdullah Amar Musa | Full-Stack Engineer & SaaS Architect" />
+    <meta property="og:title" content="Abdullah Amar Musa — Full-Stack Product Engineer" />
     <meta property="og:description"
-        content="I build million-dollar digital experiences. Expert in MERN Stack, Next.js, and high-performance SaaS development." />
-    <meta property="og:image" content="/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+        content="I build polished SaaS products that are ready to ship. Product architecture, UX and production-ready Next.js applications." />
+    <meta property="og:image" content="/portrait-demo.svg" />
+    <meta property="og:image:alt" content="Abdullah Amar Musa — Full-Stack Product Engineer logo and portrait" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="500" />
     <meta property="og:url" content="https://abdullahamarmusa.com" />
     <meta property="og:site_name" content="Abdullah Amar Musa | Portfolio" />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:image:type" content="image/svg+xml" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Abdullah Amar Musa | Full-Stack Engineer & SaaS Architect" />
-    <meta name="twitter:description" content="I build million-dollar digital experiences. Expert in MERN Stack, Next.js, and SaaS development." />
-    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:title" content="Abdullah Amar Musa — Full-Stack Product Engineer" />
+    <meta name="twitter:description" content="I build polished SaaS products that are ready to ship. Product architecture, UX and production-ready Next.js applications." />
+    <meta name="twitter:image" content="/portrait-demo.svg" />
+    <meta name="twitter:image:alt" content="Abdullah Amar Musa — Full-Stack Product Engineer logo and portrait" />
     <meta name="twitter:creator" content="@abdullahamarmusa" />
 
     <!-- Additional Meta Tags -->
@@ -44,8 +47,8 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Abdullah Amar Musa",
-        "jobTitle": ["Full-Stack Engineer", "SaaS Architect"],
-        "description": "I build million-dollar digital experiences. Expert in MERN Stack, Next.js, and high-performance SaaS development.",
+        "jobTitle": ["Full-Stack Product Engineer"],
+        "description": "I build polished SaaS products that are ready to ship. Product architecture, UX and production-ready Next.js applications.",
         "url": "https://abdullahamarmusa.com",
         "sameAs": [
             "https://github.com/abdullahamarmusa",
@@ -53,12 +56,12 @@
             "https://twitter.com/abdullahamarmusa"
         ],
         "knowsAbout": [
-            "React", "Node.js", "MongoDB", "Express.js", "Next.js", "TypeScript", "Tailwind CSS", "SaaS Development", "Web Development", "Software Architecture"
+            "React", "Node.js", "Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Product Architecture", "UX", "SaaS Development", "Full-Stack Engineering"
         ],
         "offers": {
             "@type": "Service",
-            "serviceType": "Full-Stack Development",
-            "description": "Custom web application development, SaaS architecture, and consulting services"
+            "serviceType": "Full-Stack Product Engineering",
+            "description": "Product architecture, UX and full-stack engineering for SaaS products — from idea to production-ready launch"
         },
         "alumniOf": {
             "@type": "EducationalOrganization",
@@ -68,19 +71,30 @@
     </script>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Syne:wght@600;700;800&display=swap"
         rel="stylesheet">
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Syne:wght@600;700;800&display=swap">
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="/src/main.jsx" as="script" />
+
+    <!-- Dark-only theme: force dark color scheme on first paint (no light theme) -->
+    <script>
+        (function () {
+            try {
+                localStorage.removeItem('theme');
+                document.documentElement.classList.remove('light');
+                document.documentElement.style.colorScheme = 'dark';
+            } catch (e) { /* no-op */ }
+        })();
+    </script>
 </head>
 
 <body>

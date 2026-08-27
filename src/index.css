@@ -65,9 +65,9 @@ html {
   @apply transition-all duration-300 ease-out;
 }
 .card-hover:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow:
-    0 24px 48px -12px rgba(0, 0, 0, 0.4),
+    0 12px 24px -12px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
@@ -76,8 +76,8 @@ html {
   @apply transition-all duration-300 ease-out active:scale-[0.98];
 }
 .btn-premium:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 40px -5px rgba(168, 85, 247, 0.4);
+  transform: scale(1.01);
+  box-shadow: 0 0 30px -5px rgba(168, 85, 247, 0.3);
 }
 
 /* Perspective for 3D tilt */
@@ -164,6 +164,16 @@ textarea:focus {
 
   .group:hover .animate-scroll {
     animation-play-state: running !important;
+  }
+
+  /* Pricing lighting system: disable ambient/energy motion */
+  .pcard-corner-inner,
+  .pcard-energy {
+    animation: none !important;
+  }
+
+  .pcard:hover {
+    transform: none !important;
   }
 }
 

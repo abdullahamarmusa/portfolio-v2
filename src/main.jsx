@@ -1,6 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
+import "./components/reusable/sections.css";
+import "./components/reusable/projects-showcase.css";
 import './index.css';
 import { Analytics } from "@vercel/analytics/react";
 
@@ -10,7 +12,7 @@ if (!container) throw new Error('Failed to find the root element');
 const root = createRoot(container);
 
 // Use StrictMode in development, but not in production for better performance
-const AppWrapper = process.env.NODE_ENV === 'development' ? (
+const AppWrapper = import.meta.env.MODE === 'development' ? (
   <React.StrictMode>
     <App />
     <Analytics />

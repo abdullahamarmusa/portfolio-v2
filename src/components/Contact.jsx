@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ScrollReveal from './ScrollReveal';
 import { contactService } from '../lib/contactService';
 
-const BUDGET_OPTIONS = ['< $1k', '$1k – $3k', '$3k – $6k', '$6k+'];
+const BUDGET_OPTIONS = ['$99–$299', '$299–$499', '$499–$1k', '$1k+'];
 
 // Glassmorphism Success Message Component
 const SuccessMessage = ({ onReset, submittedBudget }) => {
@@ -16,20 +16,20 @@ const SuccessMessage = ({ onReset, submittedBudget }) => {
   let cta = "Send Another Message";
   let action = onReset;
 
-  if (submittedBudget === '< $1k') {
-    header = "Let's Get Strategic";
-    text = "Based on your budget, I highly recommend booking an MVP Strategy Session. It's the most high-leverage way to get unblocked right now.";
-    cta = "Book Strategy Session ($99)";
+  if (submittedBudget === '$99–$299') {
+    header = "Great fit for a Product Sprint";
+    text = "Your budget aligns with the Product Sprint package — focused MVP and product work. I'll review your details and reach out within 24 hours.";
+    cta = "View Sprint Pricing";
     action = () => window.location.href = "#pricing";
-  } else if (submittedBudget === '$1k – $3k' || submittedBudget === '$3k – $6k') {
-    header = "Perfect Match for an MVP Sprint";
-    text = "Your budget aligns perfectly with my 7-Day MVP Sprint ($2,500). I'll review your details and reach out within 24 hours to schedule our kickoff call.";
-    cta = "View MVP Details";
+  } else if (submittedBudget === '$299–$499') {
+    header = "Perfect Match for a Product Build";
+    text = "Your budget aligns with the Product Build package — complete SaaS and product builds. I'll review your details and reach out within 24 hours.";
+    cta = "View Build Pricing";
     action = () => window.location.href = "#pricing";
-  } else if (submittedBudget === '$6k+') {
-    header = "Ready for Growth";
-    text = "This sounds like a great fit for my Growth Partner retainer. I'll review your project scope and contact you within 24 hours to discuss scaling strategies.";
-    cta = "View Growth Partner Details";
+  } else if (submittedBudget === '$499–$1k' || submittedBudget === '$1k+') {
+    header = "Product Partner Ready";
+    text = "This budget is well-suited to an ongoing Product Partner engagement or a larger custom build. I'll review your scope and contact you within 24 hours.";
+    cta = "View Partner Options";
     action = () => window.location.href = "#pricing";
   }
 
@@ -167,8 +167,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({ 
     name: '', 
     email: '', 
-    stage: 'Idea / Pre-revenue',
-    bottleneck: 'Speed to market',
+    company: '',
     timeline: 'ASAP',
     message: '' 
   });
@@ -199,8 +198,7 @@ const Contact = () => {
       setFormData({ 
         name: '', 
         email: '', 
-        stage: 'Idea / Pre-revenue',
-        bottleneck: 'Speed to market',
+        company: '',
         timeline: 'ASAP',
         message: '' 
       });
@@ -217,7 +215,7 @@ const Contact = () => {
     return (
       <section
         id="contact"
-        className="py-28 relative overflow-hidden bg-slate-950 border-t border-white/5"
+        className="py-20 relative overflow-hidden bg-slate-950 border-t border-white/5"
       >
         {/* Background effects */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-600/10 blur-[120px] rounded-full pointer-events-none" />
@@ -231,7 +229,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-28 relative overflow-hidden bg-slate-950 border-t border-white/5"
+      className="py-20 relative overflow-hidden bg-slate-950 border-t border-white/5"
     >
       {/* Background effects */}
       <div className="absolute -top-[10%] -left-[10%] w-[500px] h-[500px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none" />
@@ -259,13 +257,13 @@ const Contact = () => {
               </span>
             </div>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-              Not sure if your idea <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-                will work?
+              Have a product <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                worth shipping?
               </span>
             </h2>
             <p className="text-slate-300 text-lg mb-8 leading-relaxed max-w-md font-semibold">
-              I'll validate it for you in 24 hours — <span className="text-emerald-400">free</span>. Let's see if you're a fit for one of my 3 open slots in Q2 2026.
+              Let's turn the idea into a polished, production-ready product. Tell me what you're building, where you are now, and what needs to ship.
             </p>
 
             <div className="space-y-6">
@@ -374,23 +372,16 @@ const Contact = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-300">Current Stage</label>
-                    <div className="relative">
-                      <select
-                        name="stage"
-                        value={formData.stage}
-                        onChange={handleChange}
-                        className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 text-white appearance-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition cursor-pointer"
-                        required
-                      >
-                        <option value="Idea / Pre-revenue">Idea / Pre-revenue</option>
-                        <option value="Building MVP">Building MVP</option>
-                        <option value="Scaling / PMF">Scaling / PMF</option>
-                      </select>
-                      <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-500">
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                      </div>
-                    </div>
+                    <label className="text-sm font-medium text-slate-300">Company / Project</label>
+                    <input
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-600 focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition"
+                      placeholder="Acme Corp"
+                      required
+                    />
                   </div>
 
                   <div className="space-y-2">
@@ -410,26 +401,6 @@ const Contact = () => {
                       <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-500">
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-300">Biggest Bottleneck</label>
-                  <div className="relative">
-                    <select
-                      name="bottleneck"
-                      value={formData.bottleneck}
-                      onChange={handleChange}
-                      className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 text-white appearance-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition cursor-pointer"
-                      required
-                    >
-                      <option value="Speed to market">Speed to market</option>
-                      <option value="Need technical architecture">Need technical architecture / logic</option>
-                      <option value="Fixing broken code / tech debt">Fixing broken code / tech debt</option>
-                    </select>
-                    <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-500">
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                     </div>
                   </div>
                 </div>
@@ -475,7 +446,7 @@ const Contact = () => {
                       Validating...
                     </span>
                   ) : (
-                    'Get Free 24h Validation'
+                    'Tell me about your product'
                   )}
                 </button>
 
@@ -493,7 +464,7 @@ const Contact = () => {
                       d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  I typically respond within 24 hours.
+                  Usually replies within 24 hours — no obligation, no pressure.
                 </p>
               </form>
             </div>

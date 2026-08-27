@@ -1,0 +1,232 @@
+/* ============================================================
+   Pricing card lighting system
+   Layered gradients + cursor-reactive light + compound hover.
+   Only transform / opacity / box-shadow / CSS vars animate.
+   ============================================================ */
+
+/* --- Accent personalities ------------------------------------ */
+.pcard {
+  --pcard-accent: 139, 92, 246; /* violet (default) */
+  --cursor-alpha: 0.13;
+}
+.pcard--violet {
+  --pcard-accent: 139, 92, 246;
+}
+.pcard--featured {
+  --pcard-accent: 168, 85, 247;
+  --cursor-alpha: 0.17;
+}
+.pcard--blue {
+  --pcard-accent: 59, 130, 246;
+}
+
+/* --- Card body: layered ambient gradients --------------------- */
+.pcard-body {
+  position: relative;
+  isolation: isolate;
+}
+
+.pcard--violet .pcard-body {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.1), transparent 42%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
+    linear-gradient(rgba(2, 6, 23, 0.88), rgba(2, 6, 23, 0.92));
+}
+
+.pcard--featured .pcard-body {
+  background:
+    radial-gradient(circle at 50% -10%, rgba(192, 132, 252, 0.2), transparent 55%),
+    radial-gradient(circle at 85% 90%, rgba(236, 72, 153, 0.1), transparent 42%),
+    radial-gradient(circle at 50% 110%, rgba(236, 72, 153, 0.08), transparent 50%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.01)),
+    linear-gradient(rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.96));
+  box-shadow:
+    0 0 0 1px rgba(168, 85, 247, 0.15),
+    0 20px 40px rgba(2, 6, 23, 0.4);
+  transition: box-shadow 0.4s ease;
+}
+
+.pcard--blue .pcard-body {
+  background:
+    radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.1), transparent 42%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
+    linear-gradient(rgba(2, 6, 23, 0.88), rgba(2, 6, 23, 0.92));
+}
+
+.pcard--featured:hover .pcard-body {
+  box-shadow:
+    0 0 0 1px rgba(168, 85, 247, 0.3),
+    0 24px 50px rgba(124, 58, 237, 0.1);
+}
+
+/* --- Dynamic gradient border ----------------------------------- */
+.pcard-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background:
+    linear-gradient(rgba(2, 6, 23, 0), rgba(2, 6, 23, 0)) padding-box,
+    linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.12),
+        rgba(var(--pcard-accent), 0.14),
+        rgba(255, 255, 255, 0.04)
+      )
+      border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  opacity: 0.75;
+  z-index: 2;
+}
+
+.pcard:hover .pcard-body::before {
+  opacity: 1;
+  background:
+    linear-gradient(rgba(2, 6, 23, 0), rgba(2, 6, 23, 0)) padding-box,
+    linear-gradient(
+        135deg,
+        rgba(var(--pcard-accent), 0.55),
+        rgba(236, 72, 153, 0.35),
+        rgba(59, 130, 246, 0.2)
+      )
+      border-box;
+}
+
+/* --- Corner glow ("studio light") ------------------------------- */
+.pcard-corner {
+  position: absolute;
+  top: -60px;
+  right: -50px;
+  width: 220px;
+  height: 220px;
+  pointer-events: none;
+  opacity: 0.55;
+  transform: scale(1);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+  z-index: 0;
+}
+
+.pcard:hover .pcard-corner {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.pcard-corner-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(var(--pcard-accent), 0.16), transparent 70%);
+  filter: blur(30px);
+  animation: ambientGlow 5s ease-in-out infinite;
+}
+
+@keyframes ambientGlow {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+/* --- Cursor-reactive light -------------------------------------- */
+.pcard-cursor {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    280px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(var(--pcard-accent), var(--cursor-alpha)),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pcard:hover .pcard-cursor {
+  opacity: 1;
+}
+
+/* --- Faint diagonal energy line ---------------------------------- */
+.pcard-energy {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.022) 50%,
+    transparent 60%
+  );
+  background-size: 250% 250%;
+  animation: energyShift 14s linear infinite;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+@keyframes energyShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/* --- Icon: part of the lighting system ---------------------------- */
+.pcard-icon {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(var(--pcard-accent), 0.08));
+  transition: box-shadow 0.3s ease;
+}
+
+.pcard:hover .pcard-icon {
+  box-shadow: 0 0 20px rgba(var(--pcard-accent), 0.25);
+}
+
+.pcard--featured .pcard-icon {
+  background: linear-gradient(145deg, rgba(168, 85, 247, 0.25), rgba(236, 72, 153, 0.12));
+}
+
+/* --- "Best for" confirmation glow ---------------------------------- */
+.pcard-bestfor {
+  transition: text-shadow 0.3s ease;
+}
+
+.pcard:hover .pcard-bestfor {
+  text-shadow: 0 0 16px rgba(52, 211, 153, 0.28);
+}
+
+/* --- One-shot sheen sweep on CTA ------------------------------------ */
+.cta-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-sheen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35), transparent 70%);
+  transition: transform 0.65s ease;
+  pointer-events: none;
+}
+
+.cta-sheen:hover::after {
+  transform: translateX(120%);
+}

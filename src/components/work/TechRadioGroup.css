@@ -1,0 +1,74 @@
+/* ── TechRadioGroup — radio-style technology pills (shared by cards + case studies) ── */
+.trg {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.trg__radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 11px;
+  border: 1px solid rgba(242, 240, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(242, 240, 255, 0.03);
+  color: rgba(242, 240, 255, 0.5);
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.trg__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  transition: filter 200ms ease;
+}
+
+.trg__logo svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.trg__radio:hover {
+  color: rgba(242, 240, 255, 0.9);
+  border-color: rgba(242, 240, 255, 0.22);
+}
+
+/* Active radio — theme purple fill on the dot, soft tint on the pill.
+   Falls back per-context: project accent → global signal purple. */
+.trg__radio.is-active {
+  color: #fff;
+  background: linear-gradient(180deg, rgba(168, 85, 247, 0.24), rgba(168, 85, 247, 0.1));
+  border-color: var(--project-accent, var(--rs-signal, #a855f7));
+}
+
+.trg__radio.is-active .trg__logo {
+  filter: drop-shadow(
+    0 0 4px color-mix(in srgb, var(--project-accent, var(--rs-signal, #a855f7)) 55%, transparent)
+  );
+}
+
+.trg__radio:focus-visible {
+  outline: 2px solid var(--project-accent, var(--rs-signal, #a855f7));
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trg__radio,
+  .trg__logo {
+    transition: none;
+  }
+}
