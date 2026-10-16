@@ -10,6 +10,7 @@ export interface BaseComponentProps {
 export interface PricingCardProps {
   title: string;
   subtitle: string;
+  headline: string;
   price: string;
   pricePeriod: string;
   description: string;
@@ -26,6 +27,7 @@ export interface PricingCardProps {
   secondaryCTAAction?: string;
   microProof?: string[];
   priceLabel?: string;
+  priceNote?: string;
   scope?: string;
   delivery?: string;
   ctaHint?: string;

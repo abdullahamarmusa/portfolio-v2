@@ -6,23 +6,21 @@ import './pricing-lighting.css';
 const PricingCard: React.FC<PricingCardProps> = ({
   title,
   subtitle,
+  headline,
   price,
   pricePeriod,
   priceLabel,
-  description: _description,
+  description,
   features,
   isPopular,
   buttonText,
   buttonAction,
   icon: Icon,
-  gradient: _gradient,
   delay,
-  bestFor,
   secondaryCTAText,
   secondaryCTAAction,
   microProof,
-  scope,
-  ctaHint,
+  priceNote,
   accent = 'violet',
 }) => {
   const cardRef = React.useRef<HTMLDivElement>(null);
@@ -82,25 +80,16 @@ const PricingCard: React.FC<PricingCardProps> = ({
             </div>
           </div>
 
-          {/* Title & Subtitle */}
-          <h3 className="text-xl font-bold text-white mb-1">{title}</h3>
+          {/* Service name and eyebrow */}
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">{title}</h3>
           <p
-            className={`text-sm font-medium mb-4 ${isPopular ? 'text-purple-300/70' : 'text-slate-500'}`}
+            className={`text-[10px] font-bold uppercase tracking-[0.16em] mb-3 ${isPopular ? 'text-purple-300' : 'text-slate-500'}`}
           >
             {subtitle}
           </p>
 
-          {/* Best For */}
-          {bestFor && (
-            <div className="mb-4 pb-4 border-b border-white/5">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
-                Best for
-              </div>
-              <div className="pcard-bestfor text-xs font-semibold text-emerald-300 leading-snug">
-                {bestFor}
-              </div>
-            </div>
-          )}
+          <h4 className="text-xl font-bold leading-snug text-white mb-3">{headline}</h4>
+          <p className="text-sm leading-relaxed text-slate-400 mb-5">{description}</p>
 
           {/* Price */}
           <div className="mb-3">
@@ -115,46 +104,19 @@ const PricingCard: React.FC<PricingCardProps> = ({
                 {priceLabel}
               </div>
             )}
+            {priceNote && (
+              <p className="mt-2 text-xs leading-snug text-slate-400">{priceNote}</p>
+            )}
           </div>
 
-          {/* Scope */}
-          {scope && (
-            <div className="mb-5">
-              <p className="text-xs text-slate-400 font-medium leading-snug">{scope}</p>
-            </div>
-          )}
-
-          {/* Features List */}
-          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2.5">
-            {"What's included"}
-          </div>
-          <ul className={`mb-6 ${isPopular ? 'grid grid-cols-2 gap-x-3 gap-y-2.5' : 'space-y-2.5'}`}>
-            {features.map((feature, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <div
-                  className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors duration-300 ${
-                    isPopular
-                      ? 'bg-emerald-500/20'
-                      : 'bg-slate-800 border border-white/5 group-hover:border-emerald-500/30'
-                  }`}
-                >
-                  <svg
-                    className={`w-2.5 h-2.5 transition-colors duration-300 ${
-                      isPopular ? 'text-emerald-400' : 'text-slate-500 group-hover:text-emerald-400'
-                    }`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={3}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <span className="text-xs text-slate-300 leading-snug">{feature}</span>
+          {/* Tags */}
+          <ul className="flex flex-wrap gap-2 mb-6">
+            {features.map((feature) => (
+              <li
+                key={feature}
+                className="rounded-full border border-white/10 bg-slate-900/70 px-2.5 py-1 text-[10px] font-medium text-slate-300"
+              >
+                {feature}
               </li>
             ))}
           </ul>
@@ -185,11 +147,6 @@ const PricingCard: React.FC<PricingCardProps> = ({
                 </svg>
               </button>
             </a>
-
-            {/* Micro-reassurance under CTA */}
-            {ctaHint && (
-              <p className="mt-3 text-[11px] text-slate-500 text-center leading-snug">{ctaHint}</p>
-            )}
 
             {/* Secondary CTA */}
             {secondaryCTAText && secondaryCTAAction && (

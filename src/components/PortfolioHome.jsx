@@ -48,21 +48,19 @@ const CredibilityStrip = () => {
   );
 };
 
-/* ── Pricing data — prices unchanged, copy rewritten outcome-first ───────── */
+/* ── Service card content ────────────────────────────────────────────────── */
 const services = [
   {
-    subtitle: 'Validate',
-    title: 'Product Sprint',
-    price: '$149+',
+    subtitle: 'FROM IDEA TO LAUNCH',
+    title: '01 — SAAS MVP DEVELOPMENT',
+    headline: 'Turn your SaaS idea into a launch-ready full-stack MVP.',
+    price: '$499',
     pricePeriod: '',
-    priceLabel: 'Starting price',
-    bestFor: 'Focused MVP and product work',
-    scope: 'Core flows · UX · Working build',
-    ctaText: 'Start a Sprint',
-    ctaHint: 'Target package: ~$399',
-    desc: 'Validate your idea with a focused product sprint — core flows, real UX and a working build you can put in front of users.',
-    features: ['Core product flows', 'UX + interface design', 'Working Next.js build', 'Live in days, not weeks'],
-    slug: 'sprint',
+    priceLabel: 'Introductory price',
+    ctaText: 'Discuss Your MVP',
+    desc: 'Build a focused web application around your core workflow, with a responsive interface, database-backed features, essential integrations, testing, and a deployment handoff.',
+    features: ['Full-Stack Development', 'Backend & Data', 'API Integration', 'Deployment'],
+    slug: 'saas-mvp',
     accent: 'violet',
     icon: () => (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -71,19 +69,17 @@ const services = [
     ),
   },
   {
-    subtitle: 'Ship',
-    title: 'Product Build',
-    price: '$299+',
+    subtitle: 'IMPROVE WHAT EXISTS',
+    title: '02 — SAAS PRODUCT IMPROVEMENT',
+    headline: 'Improve your existing product without rebuilding it.',
+    price: '$75',
     pricePeriod: '',
     priceLabel: 'Starting price',
-    bestFor: 'Complete SaaS and product builds',
-    scope: 'Full product · Architecture · Production',
-    ctaText: 'Start a Build',
-    ctaHint: 'Target package: ~$399',
-    desc: 'A complete SaaS or product build — architecture, interface and production engineering, ready to ship to real users.',
-    features: ['Full product architecture', 'Production UI system', 'API + database integration', 'Deployed and documented'],
-    slug: 'build',
-    popular: true,
+    priceNote: 'Figma-to-React page implementation from $125.',
+    ctaText: 'Upgrade My Product',
+    desc: 'Refine dashboard interfaces, fix responsive layout issues, and deliver targeted frontend improvements within your existing codebase.',
+    features: ['Dashboard UI', 'React', 'Responsive UX', 'Frontend Features'],
+    slug: 'product-improvement',
     accent: 'featured',
     icon: () => (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -92,18 +88,16 @@ const services = [
     ),
   },
   {
-    subtitle: 'Scale',
-    title: 'Product Partner',
-    price: '$99+',
-    pricePeriod: '',
+    subtitle: 'ONGOING ENGINEERING',
+    title: '03 — PRODUCT ENGINEERING SPRINTS',
+    headline: 'Keep your product moving with focused engineering sprints.',
+    price: '$299',
+    pricePeriod: '/ sprint',
     priceLabel: 'Starting price',
-    bestFor: 'Ongoing engineering partnership',
-    scope: 'Iteration · Improvements · Support',
-    ctaText: 'Partner With Me',
-    ctaHint: 'Target package: ~$249',
-    desc: 'Ongoing product engineering — continuous iteration, improvements and shipping as your product grows.',
-    features: ['Continuous iteration', 'Feature development', 'Performance + UX improvements', 'Direct communication'],
-    slug: 'partner',
+    ctaText: 'Plan a Sprint',
+    desc: 'Ship agreed features, refine existing workflows, and improve your product through defined development cycles with clear priorities, deliverables, and scope.',
+    features: ['Feature Development', 'Iteration', 'Code Quality', 'Delivery & Handoff'],
+    slug: 'engineering-sprints',
     accent: 'blue',
     icon: () => (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -451,18 +445,17 @@ const PortfolioHome = () => {
                   <PricingCard
                     subtitle={svc.subtitle}
                     title={svc.title}
+                    headline={svc.headline}
                     price={svc.price}
                     pricePeriod={svc.pricePeriod}
                     priceLabel={svc.priceLabel}
                     description={svc.desc}
                     features={svc.features}
                     isPopular={svc.popular || false}
+                    priceNote={svc.priceNote}
                     buttonText={svc.ctaText}
                     buttonAction="#contact"
                     icon={svc.icon}
-                    bestFor={svc.bestFor}
-                    scope={svc.scope}
-                    ctaHint={svc.ctaHint}
                     accent={svc.accent}
                   />
                 </Suspense>
